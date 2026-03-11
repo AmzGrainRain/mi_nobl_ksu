@@ -213,21 +213,18 @@ try {
     Write-Host "   - 设置目录所有者：chown -R 0:1000 $KSU_HOME"
     adb shell "chown -R 0:1000 $KSU_HOME"
 
-    # 执行KSUD命令
-    Write-Host "   - 执行 ksud post-fs-data..."
-    $postFsData = (adb shell "$KSU_HOME/bin/ksud post-fs-data" 2>&1 | Out-String).Trim()
-    Start-Sleep -Seconds 1
+    # 执行 KSUD 命令
+    Write-Host "   - 执行 ksud late-load..."
+    $postFsData = (adb shell "$KSU_HOME/bin/ksud late-load" 2>&1 | Out-String).Trim()
+    Start-Sleep -Seconds 3`
 
     Write-Host "   - 删除 magisk 软链接：rm -f $KSU_HOME/bin/magisk"
     adb shell "rm -f $KSU_HOME/bin/magisk"
 
-    Write-Host "   - 执行 ksud services..."
-    $services = (adb shell "$KSU_HOME/bin/ksud services" 2>&1 | Out-String).Trim()
-    Start-Sleep -Seconds 1
-
-    Write-Host "   - 执行 ksud boot-completed..."
-    $bootCompleted = (adb shell "$KSU_HOME/bin/ksud boot-completed" 2>&1 | Out-String).Trim()
-    Start-Sleep -Seconds 1
+    # 删除原先的 KSU 管理器（如果有）
+    if ((adb shell pm path me.weishu.kernelsu | Out-String).Trim() -ne '') {
+        adb shell pm uninstall me.weishu.kernelsu
+    }
 
     # 推送并安装APK
     $apkFileName = Split-Path -Path $KSU_MANAGER -Leaf
