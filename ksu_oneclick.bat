@@ -64,7 +64,7 @@ echo.
 echo [2/5] 补丁内核模块 (PC端 Python)...
 :: ═════════════════════════════════════
 
-python "%PATCHER%" "%KO%" "%KALLSYMS%" "%PATCHED%"
+.\python\python.exe "%PATCHER%" "%KO%" "%KALLSYMS%" "%PATCHED%"
 if errorlevel 1 (
     echo [X] 补丁失败
     goto :fail

@@ -8,7 +8,7 @@
 ## 前提条件
 
 1. **ADB 已连接** — USB 调试已打开
-2. **Python 3** — PC 端需要 Python 3 运行内核模块补丁脚本
+2. **Python 3** — Unix-Like 端需要 Python 3 运行内核模块补丁脚本
 3. **KernelSU Manager** — 已安装到设备 (`ksu_manager.apk`)
 4. **ZygiskSU** — 已安装为 KSU 模块 (提供 Zygisk 环境)
 5. **LSPosed** — 已安装为 KSU 模块 (`LSPosed-v1.9.2-it-7573-release_1773031523.zip`)
