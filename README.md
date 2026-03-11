@@ -19,3 +19,13 @@
 **magisk 与 ksu 建议二选一，不要同时安装。**
 
 **如果非要安装两个，请先安装 magisk 后再安装 ksu。**
+
+## adb root 权限获取示例
+
+![adb root](./images/adb-root.jpg)
+
+## ksu 安装示例
+
+![ksu-1](./images/ksu-1.jpg)
+
+![ksu-2](./images/ksu-2.jpg)
