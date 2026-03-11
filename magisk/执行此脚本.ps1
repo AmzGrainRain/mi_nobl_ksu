@@ -33,8 +33,6 @@ if ($IS_ROOT_RESULT -eq "adbd is already running as root") {
 $filesToPush = @(
     @{LocalPath = ".\busybox"; RemotePath = "/data/local/tmp/"},
     @{LocalPath = ".\magisk.apk"; RemotePath = "/data/local/tmp/"},
-    @{LocalPath = ".\env-patcher"; RemotePath = "/data/local/tmp/"},
-    @{LocalPath = ".\resetprop"; RemotePath = "/data/local/tmp/"},
     @{LocalPath = ".\live_setup.sh"; RemotePath = "/data/local/tmp/"}
 )
 
