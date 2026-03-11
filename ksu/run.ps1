@@ -98,7 +98,7 @@ try {
 
     # 交互式选择
     do {
-        $selection = Read-Host "`n   请输入选择的序号 [1-$($koFiles.Count)]:"
+        $selection = Read-Host "`n   请输入选择的序号 [1-$($koFiles.Count)]"
         if ($selection -match '^\d+$' -and [int]$selection -ge 1 -and [int]$selection -le $koFiles.Count) {
             $selectedIndex = [int]$selection - 1
             $KO_FILE = $koFiles[$selectedIndex].FullName
