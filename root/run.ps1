@@ -101,36 +101,6 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "⚠️  rsp.sh 脚本执行可能存在异常，请检查位于 /sdcard/resetprop.txt 的日志输出！" -ForegroundColor Yellow
 }
 
-# 生成 kill-adbd.sh 脚本
-Write-Host "📝 正在生成 kill-adbd.sh 脚本..." -ForegroundColor Yellow
-Write-Host "📝 正在获取 adbd 进程 ID..." -ForegroundColor Yellow
-$ADBD_PID = adb shell pgrep adbd | Out-String
-$ADBD_PID = $ADBD_PID.Trim()
-if ([string]::IsNullOrEmpty($ADBD_PID)) {
-    Write-Host "❌ adbd 进程未找到，无法执行 kill 操作！" -ForegroundColor Red
-    [void][System.Console]::ReadKey($true)
-    exit 1
-}
-Remove-Item -Path "./kill-adbd.sh" -ErrorAction Ignore
-[System.IO.File]::WriteAllText("./kill-adbd.sh", "kill -9 $ADBD_PID", [System.Text.Encoding]::UTF8)
-
-# 推送 kill-adbd.sh 脚本
-Write-Host "📤 正在推送 kill-adbd.sh 脚本到设备..." -ForegroundColor Yellow
-adb push ./kill-adbd.sh /data/local/tmp/
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ kill-adbd.sh 脚本推送失败！" -ForegroundColor Red
-    [void][System.Console]::ReadKey($true)
-    exit 1
-}
-
-# 执行 kill-adbd.sh 脚本
-Write-Host "⚙️  正在执行 kill-adbd.sh 脚本..." -ForegroundColor Yellow
-Start-Sleep -Seconds 3
-adb shell service call miui.mqsas.IMQSNative 21 i32 1 s16 "sh" i32 1 s16 "/data/local/tmp/kill-adbd.sh" s16 "/sdcard/kill-adbd.txt" i32 60
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "⚠️  kill-adbd.sh 脚本执行可能存在异常，请检查！" -ForegroundColor Yellow
-}
-
 # 等待设备重新连接
 Write-Host "`n🔍 等待 ADB 服务重启并重新连接设备..." -ForegroundColor Yellow
 adb wait-for-device
