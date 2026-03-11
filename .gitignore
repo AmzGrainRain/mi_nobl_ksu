@@ -1,0 +1,3 @@
+./root/kill-adbd.sh
+./ksu/kallsyms
+./ksu/kernelsu_patched.ko
