@@ -21,8 +21,8 @@ fastboot reboot
 
 - 双击运行 `一键部署KernelSU.exe`，根据提示操作
 
-## Powershell 版本一键部署 KernelSU 使用方法
+## 另提供 powershell 脚本的版本（高级用户）
 
-- 如果你不确定是否有 powershell7 环境，那么就先安装它，具体方法百度或问 AI
-- 首次安装 powershell7 后，记得右键以管理员身份运行 `bypass.ps1` 脚本
-- 在手机处于开机状态时，双击运行 `run.ps1` 脚本，根据提示操作
+需要 pwsh 7.0+ 且需要调整 ExecutionPolicy 以允许执行脚本
+
+- 双击 `run.ps1` 脚本，根据提示操作
