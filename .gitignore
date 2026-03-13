@@ -1,3 +1,6 @@
 ./root/kill-adbd.sh
 ./ksu/kallsyms
 ./ksu/kernelsu_patched.ko
+./cpp/.vs
+./cpp/out
+./cpp/CMakeSettings.json
